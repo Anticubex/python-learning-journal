@@ -34,9 +34,11 @@ class ElevatorRide:
     def board_guest(self, guest_name):
         self.stack.push(guest_name)
 
-    def start_ride(self):
+    def start_ride(self, capacity):
         print("\nElevator Ride Starting!")
-        while not self.stack.is_empty():
+        for _ in range(capacity):
+            if self.stack.is_empty():
+                break
             print(f"{self.stack.pop()} is exiting the ride!")
         print("Ride finished.\n")
 
@@ -87,9 +89,11 @@ class RollerCoasterRide:
     def join_queue(self, guest_name):
         self.queue.enqueue(guest_name)
 
-    def start_ride(self):
+    def start_ride(self, capacity):
         print("\nRoller Coaster Ride Starting!")
-        while not self.queue.is_empty():
+        for _ in range(capacity):
+            if self.queue.is_empty():
+                break
             print(f"{self.queue.dequeue()} is boarding the ride!")
         print("Ride is running!\n")
 
@@ -139,9 +143,11 @@ class VIPRide:
     def add_guest(self, guest_name, priority):
         self.priority_queue.push(guest_name, priority)
 
-    def start_ride(self):
+    def start_ride(self, capacity):
         print("\nVIP Ride Starting!")
-        while not self.priority_queue.is_empty():
+        for _ in range(capacity):
+            if self.priority_queue.is_empty():
+                break
             print(f"{self.priority_queue.pop()} is boarding!")
         print("VIP Ride is running!\n")
 
@@ -153,18 +159,21 @@ if __name__ == "__main__":
     elevator.board_guest("Alice")
     elevator.board_guest("Bob")
     elevator.board_guest("Charlie")
-    elevator.start_ride()
+    elevator.start_ride(2)
+    elevator.start_ride(2)
 
     # Roller Coaster Ride Test
     roller_coaster = RollerCoasterRide()
     roller_coaster.join_queue("Dave")
     roller_coaster.join_queue("Eve")
     roller_coaster.join_queue("Frank")
-    roller_coaster.start_ride()
+    roller_coaster.start_ride(2)
+    roller_coaster.start_ride(2)
 
     # VIP Ride Test
     vip_ride = VIPRide()
     vip_ride.add_guest("Grace", 2)  # Lower number = higher priority
     vip_ride.add_guest("Hank", 1)
     vip_ride.add_guest("Ivy", 3)
-    vip_ride.start_ride()
+    vip_ride.start_ride(2)
+    vip_ride.start_ride(2)
