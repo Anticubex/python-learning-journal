@@ -46,7 +46,7 @@ def worst_case_test(n: int) -> float:
 
 import matplotlib.pyplot as plt
 
-Ns = [1, 10, 100, 500] + list(range(1000, 100000, 500))
+Ns = [1, 10, 100, 500] + list(range(1000, 10000, 500))
 Ts = [worst_case_test(n) for n in Ns]
 
 plt.plot(Ns, Ts)
